@@ -55,7 +55,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     init {
         loadPosts()
     }
-    fun NewPosts() = viewModelScope.launch {
+    fun newPosts() = viewModelScope.launch {
         try {
             _dataState.value = FeedModelState(loading = true)
             repository.newPost(hidden = true)

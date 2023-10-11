@@ -83,6 +83,8 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
 
     override suspend fun newPost( hidden: Boolean) {
         dao.getAll().filter { hidden == true }
+        dao.showNewPost()
+        dao.getAllVisible()
 
     }
 

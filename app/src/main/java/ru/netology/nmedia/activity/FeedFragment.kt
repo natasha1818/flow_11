@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -71,19 +72,21 @@ class FeedFragment : Fragment() {
         }
         viewModel.newerCount.observe(viewLifecycleOwner) { state ->
            binding.newPost.visibility = VISIBLE
-            adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
-                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                    if (positionStart ==0){
-                        binding.list.smoothScrollToPosition(0)
-                    }
-                }
-            })
 
-            binding.newPost.setOnClickListener {
-                viewModel.NewPosts()
             }
 
+            binding.newPost.setOnClickListener {
+                binding.newPost.visibility = GONE
+                adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
+                    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                        if (positionStart ==0){
+                            binding.list.smoothScrollToPosition(0)
+                        }
+                    }
 
+            })
+
+          viewModel.newPosts()
 
         }
 
