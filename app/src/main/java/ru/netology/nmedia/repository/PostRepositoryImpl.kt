@@ -85,7 +85,6 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
         dao.getAll().filter { hidden == true }
         dao.showNewPost()
         dao.getAllVisible()
-
     }
 
 

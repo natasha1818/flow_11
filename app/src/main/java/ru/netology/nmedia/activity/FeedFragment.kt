@@ -77,6 +77,7 @@ class FeedFragment : Fragment() {
 
             binding.newPost.setOnClickListener {
                 binding.newPost.visibility = GONE
+                viewModel.newPosts()
                 adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
                     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                         if (positionStart ==0){
@@ -84,9 +85,7 @@ class FeedFragment : Fragment() {
                         }
                     }
 
-            })
-
-          viewModel.newPosts()
+           })
 
         }
 
